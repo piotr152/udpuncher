@@ -1,0 +1,12 @@
+*~
+*.o
+udpuncher
+Makefile
+Makefile
+Makefile.*
+.cproject
+.project
+debug
+release
+.settings
+moc_*.cpp
