@@ -24,18 +24,28 @@
 
 #include "Client.h"
 
+/**
+ * Constructor that sets IP and port.
+ * @param IP IP of receiver
+ * @param Port own and receivers port
+ */
 Client::Client(QHostAddress IP, quint16 Port)
 {
     this->IP = IP;
     this->Port = Port;
 
+    //bind socket and make sure the port can be changed
     UdpSocket.bind(Port, QUdpSocket::ShareAddress
                        | QUdpSocket::ReuseAddressHint);
-
+    //wants to listen
     connect(&UdpSocket, SIGNAL(readyRead()),
             this, SLOT(readPendingDatagrams()));
 }
 
+/**
+ * Setter for Port. Changes also listen port of the server.
+ * @param Port Server listens now to that port
+ */
 void Client::setPort(quint16 Port)
 {
     UdpSocket.disconnectFromHost();
@@ -44,8 +54,12 @@ void Client::setPort(quint16 Port)
     this->Port = Port;
 }
 
+/**
+ * Slot for received datagram management
+ */
 void Client::readPendingDatagrams()
 {
+    //iterize through message queue
     while(UdpSocket.hasPendingDatagrams()) {
         QByteArray datagram;
         datagram.resize(UdpSocket.pendingDatagramSize());
@@ -54,12 +68,17 @@ void Client::readPendingDatagrams()
 
         UdpSocket.readDatagram(datagram.data(), datagram.size(),
                                 &sender, &senderPort);
-
+        //inform caller
         emit readDatagram(datagram, sender);
     }
 }
 
+/**
+ * Sends a message to Client::IP on port Client::Port.
+ * @param Message A string to send.
+ */
 void Client::sendMessage(QString Message)
 {
+    //have to change encoding
     UdpSocket.writeDatagram(Message.toLocal8Bit(), IP, Port);
 }

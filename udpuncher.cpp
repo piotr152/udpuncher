@@ -30,9 +30,14 @@ udpuncher::udpuncher(QWidget *parent)
     ui.setupUi(this);
     Statusbar = statusBar();
 
-    UdpClient = new Client(QHostAddress().setAddress(ui.lineEdit_IP->text()), ui.lineEdit_Port->text().toInt());
+    // initializing the connection manager Client with the IP and address from
+    // the ui, listens to the same port
+    UdpClient = new Client(QHostAddress().setAddress(ui.lineEdit_IP->text()),
+                           ui.lineEdit_Port->text().toInt());
 
-    connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)), this, SLOT(on_Client_readDatagram(QByteArray , QHostAddress)));
+    // to get informed when data arrives
+    connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)),
+            this, SLOT(on_Client_readDatagram(QByteArray , QHostAddress)));
 
 }
 
@@ -43,18 +48,23 @@ udpuncher::~udpuncher()
 
 void udpuncher::on_pushButton_Connect_clicked(bool checked)
 {
+    // make sure the port is correct
     if(ui.lineEdit_Port->text() == "") {
         Statusbar->showMessage(tr("ERORR: Please insert a port."), 4000);
         ui.lineEdit_Port->setFocus();
     } else {
-        ui.textEdit_Output->append(tr("Connecting to %1...").arg(UdpClient->IP.toString()));
+        //TODO: It should send more in constant intervalls
+        ui.textEdit_Output->append(tr("Connecting to %1...")
+                                   .arg(UdpClient->IP.toString()));
         ui.textEdit_Output->append(tr("Sending a message..."));
-        UdpClient->sendMessage(tr("Hello World from %1").arg(QHostAddress::LocalHost));
+        UdpClient->sendMessage(tr("Hello World from %1")
+                               .arg(QHostAddress::LocalHost));
     }
 }
 
 void udpuncher::on_lineEdit_IP_editingFinished()
 {
+    // check IP and jump to error, else set IP of UdpClient
     if(!UdpClient->IP.setAddress(ui.lineEdit_IP->text())) {
         int i;
 
@@ -76,7 +86,17 @@ void udpuncher::on_lineEdit_Port_editingFinished()
     UdpClient->setPort(ui.lineEdit_Port->text().toInt());
 }
 
+/**
+ * Slot for data arrival.
+ * @param datagram
+ * contains the received raw data
+ * @param sender
+ * sender's IP
+ */
 void udpuncher::on_Client_readDatagram(QByteArray datagram, QHostAddress sender)
 {
-    ui.textEdit_Output->append(tr("Message received from %1 at %2: %3").arg(sender.toString()).arg(QTime().currentTime().toString()).arg(datagram.data()));
+    ui.textEdit_Output->append(tr("Message received from %1 at %2: %3")
+                               .arg(sender.toString())
+                               .arg(QTime().currentTime().toString())
+                               .arg(datagram.data()));
 }
