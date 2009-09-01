@@ -26,11 +26,20 @@
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_IP">
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="inputMask">
          <string>000.000.000.000;_</string>
         </property>
         <property name="text">
          <string>127.000.000.001</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -43,11 +52,20 @@
       </item>
       <item>
        <widget class="QLineEdit" name="lineEdit_Port">
+        <property name="maximumSize">
+         <size>
+          <width>57</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="inputMask">
          <string>00000; </string>
         </property>
         <property name="text">
          <string>2341</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -65,20 +83,29 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_Connect">
         <property name="text">
-         <string>Send</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_Message">
-      <property name="text">
-       <string>Hello World!</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="lineEdit_Message">
+        <property name="text">
+         <string>Hello World!</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_Connect">
+        <property name="text">
+         <string>&amp;Send</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QTextEdit" name="textEdit_Output">
