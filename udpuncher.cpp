@@ -112,7 +112,8 @@ void udpuncher::on_pushButton_ping_clicked(bool checked)
 
 void udpuncher::slot_Timer_timeout()
 {
-    UdpClient->sendMessage(QString("PING:%1").arg(QTime().currentTime().toString()));
+    UdpClient->sendMessage(QString("PING:%1").
+                            arg(QTime().currentTime().toString()));
     ui.textEdit_Output->append(tr("Sending ping signal: Ping!"));
 }
 
@@ -121,7 +122,8 @@ void udpuncher::slot_Timer_timeout()
  * @param datagram contains the received raw data
  * @param sender sender's IP
  */
-void udpuncher::slot_Client_readDatagram(QByteArray datagram, QHostAddress sender)
+void udpuncher::slot_Client_readDatagram(QByteArray datagram,
+                                         QHostAddress sender)
 {
     ui.textEdit_Output->append(tr("Message received from %1 at %2: %3")
                                .arg(sender.toString())
