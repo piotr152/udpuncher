@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'udpuncher.ui'
 **
-** Created: Tue Sep 1 01:59:53 2009
+** Created: Tue Sep 1 02:11:32 2009
 **      by: Qt User Interface Compiler version 4.5.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -43,6 +43,7 @@ public:
     QLineEdit *lineEdit_Port;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_Connect;
+    QLineEdit *lineEdit_Message;
     QTextEdit *textEdit_Output;
     QMenuBar *menubar;
     QMenu *menu_File;
@@ -93,6 +94,11 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
+        lineEdit_Message = new QLineEdit(centralwidget);
+        lineEdit_Message->setObjectName(QString::fromUtf8("lineEdit_Message"));
+
+        verticalLayout->addWidget(lineEdit_Message);
+
         textEdit_Output = new QTextEdit(centralwidget);
         textEdit_Output->setObjectName(QString::fromUtf8("textEdit_Output"));
 
@@ -129,6 +135,7 @@ public:
         lineEdit_Port->setInputMask(QApplication::translate("udpuncherClass", "00000; ", 0, QApplication::UnicodeUTF8));
         lineEdit_Port->setText(QApplication::translate("udpuncherClass", "2341", 0, QApplication::UnicodeUTF8));
         pushButton_Connect->setText(QApplication::translate("udpuncherClass", "Send", 0, QApplication::UnicodeUTF8));
+        lineEdit_Message->setText(QApplication::translate("udpuncherClass", "Hello World!", 0, QApplication::UnicodeUTF8));
         textEdit_Output->setHtml(QApplication::translate("udpuncherClass", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

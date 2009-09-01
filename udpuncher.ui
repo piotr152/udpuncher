@@ -74,6 +74,13 @@
      </layout>
     </item>
     <item>
+     <widget class="QLineEdit" name="lineEdit_Message">
+      <property name="text">
+       <string>Hello World!</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QTextEdit" name="textEdit_Output">
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

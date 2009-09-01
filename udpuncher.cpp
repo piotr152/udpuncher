@@ -58,9 +58,11 @@ void udpuncher::on_pushButton_Connect_clicked(bool checked)
         //TODO: It should send more in constant intervalls
         //ui.textEdit_Output->append(tr("Connecting to %1...")
         //                           .arg(UdpClient->IP.toString()));
-        ui.textEdit_Output->append(tr("Sending a message..."));
-        UdpClient->sendMessage(tr("Hello World from %1")
-                               .arg(QHostAddress::LocalHost));
+        ui.textEdit_Output->append(tr("Sending a message: %1")
+                                   .arg(ui.lineEdit_Message->text()));
+        //send and clear
+        UdpClient->sendMessage(ui.lineEdit_Message->text());
+        ui.lineEdit_Message->clear();
     }
 }
 
