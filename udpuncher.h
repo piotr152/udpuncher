@@ -40,6 +40,7 @@ private:
     Ui::udpuncherClass ui;
     QStatusBar *Statusbar;
     Client *UdpClient;
+    QTimer *Timer;
 
 private slots:
     void on_pushButton_Connect_clicked();

@@ -83,7 +83,12 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_ping">
         <property name="text">
+         <string>Start &amp;pinging</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

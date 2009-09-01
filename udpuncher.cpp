@@ -37,6 +37,10 @@ udpuncher::udpuncher(QWidget *parent)
     Address.setAddress(ui.lineEdit_IP->text());
     UdpClient = new Client(Address, ui.lineEdit_Port->text().toInt());
 
+    Timer = new QTimer(this);
+
+    connect(Timer, SIGNAL(timeout()), this, SLOT(slot_Timer_timeout()));
+
     // to get informed when data arrives
     connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)),
             this, SLOT(on_Client_readDatagram(QByteArray , QHostAddress)));
@@ -91,6 +95,24 @@ void udpuncher::on_lineEdit_IP_editingFinished()
 void udpuncher::on_lineEdit_Port_editingFinished()
 {
     UdpClient->setPort(ui.lineEdit_Port->text().toInt());
+}
+
+
+void udpuncher::on_pushButton_ping_clicked(bool checked)
+{
+    if(checked) {
+        Timer->start(2000);
+        ui.pushButton_ping->setText(tr("S&top pinging"));
+    } else {
+        Timer->stop();
+        ui.pushButton_ping->setText(tr("Start &pinging"));
+    }
+}
+
+void udpuncher::slot_Timer_timeout()
+{
+    UdpClient->sendMessage(QString("PING:%1").arg(QTime().currentTime().toString()));
+    ui.textEdit_Output->append(tr("Sending ping signal: Ping!"));
 }
 
 /**
