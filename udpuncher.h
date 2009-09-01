@@ -47,7 +47,9 @@ private slots:
     void on_lineEdit_IP_editingFinished();
     void on_lineEdit_Port_editingFinished();
 
-    void on_Client_readDatagram(QByteArray datagram, QHostAddress sender);
+    void on_pushButton_ping_clicked(bool checked);
+    void slot_Timer_timeout();
+    void slot_Client_readDatagram(QByteArray datagram, QHostAddress sender);
 };
 
 #endif // UDPUNCHER_H

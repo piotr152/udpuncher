@@ -43,7 +43,7 @@ udpuncher::udpuncher(QWidget *parent)
 
     // to get informed when data arrives
     connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)),
-            this, SLOT(on_Client_readDatagram(QByteArray , QHostAddress)));
+            this, SLOT(slot_Client_readDatagram(QByteArray , QHostAddress)));
     //push button when enter pressed in message box
     connect(ui.lineEdit_Message, SIGNAL(returnPressed()),
             this, SLOT(on_pushButton_Connect_clicked()));
@@ -117,12 +117,10 @@ void udpuncher::slot_Timer_timeout()
 
 /**
  * Slot for data arrival.
- * @param datagram
- * contains the received raw data
- * @param sender
- * sender's IP
+ * @param datagram contains the received raw data
+ * @param sender sender's IP
  */
-void udpuncher::on_Client_readDatagram(QByteArray datagram, QHostAddress sender)
+void udpuncher::slot_Client_readDatagram(QByteArray datagram, QHostAddress sender)
 {
     ui.textEdit_Output->append(tr("Message received from %1 at %2: %3")
                                .arg(sender.toString())
