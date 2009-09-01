@@ -40,6 +40,9 @@ udpuncher::udpuncher(QWidget *parent)
     // to get informed when data arrives
     connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)),
             this, SLOT(on_Client_readDatagram(QByteArray , QHostAddress)));
+    //push button when enter pressed in message box
+    connect(ui.lineEdit_Message, SIGNAL(returnPressed()),
+            this, SLOT(on_pushButton_Connect_clicked()));
 
 }
 
@@ -48,7 +51,7 @@ udpuncher::~udpuncher()
     delete UdpClient;
 }
 
-void udpuncher::on_pushButton_Connect_clicked(bool checked)
+void udpuncher::on_pushButton_Connect_clicked()
 {
     // make sure the port is correct
     if(ui.lineEdit_Port->text() == "") {
@@ -75,13 +78,13 @@ void udpuncher::on_lineEdit_IP_editingFinished()
         Statusbar->showMessage(tr("ERROR: IP address is not valid."));
         ui.lineEdit_IP->setFocus();
         for(i = 0; i<4; i++) {
-        	if(ui.lineEdit_IP->text().section('.', i, i).toInt() > 255) {
-        		break;
-        	}
+            if(ui.lineEdit_IP->text().section('.', i, i).toInt() > 255) {
+                break;
+            }
         }
         ui.lineEdit_IP->setCursorPosition(i*4);
     } else {
-    	Statusbar->showMessage(tr("Valid IP inserted."), 4000);
+        Statusbar->showMessage(tr("Valid IP inserted."), 4000);
     }
 }
 

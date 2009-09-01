@@ -42,7 +42,7 @@ private:
     Client *UdpClient;
 
 private slots:
-    void on_pushButton_Connect_clicked(bool checked);
+    void on_pushButton_Connect_clicked();
     void on_lineEdit_IP_editingFinished();
     void on_lineEdit_Port_editingFinished();
 
