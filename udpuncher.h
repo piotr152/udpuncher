@@ -46,6 +46,7 @@ private slots:
     void on_pushButton_Connect_clicked();
     void on_lineEdit_IP_editingFinished();
     void on_lineEdit_Port_editingFinished();
+    void on_textEdit_Output_textChanged();
 
     void on_pushButton_ping_clicked(bool checked);
     void slot_Timer_timeout();

@@ -129,6 +129,10 @@ void udpuncher::slot_Client_readDatagram(QByteArray datagram,
                                .arg(sender.toString())
                                .arg(QTime().currentTime().toString())
                                .arg(datagram.data()));
+}
+
+void udpuncher::on_textEdit_Output_textChanged()
+{
     ui.textEdit_Output->verticalScrollBar()->setValue(
                 ui.textEdit_Output->verticalScrollBar()->maximum());
 }
