@@ -10,3 +10,4 @@ debug
 release
 .settings
 moc_*.cpp
+ui_udpuncher.h
