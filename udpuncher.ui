@@ -67,7 +67,7 @@
       <item>
        <widget class="QPushButton" name="pushButton_Connect">
         <property name="text">
-         <string>Connect</string>
+         <string>Send</string>
         </property>
        </widget>
       </item>

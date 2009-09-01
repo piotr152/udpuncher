@@ -27,13 +27,15 @@
 udpuncher::udpuncher(QWidget *parent)
     : QMainWindow(parent)
 {
+    QHostAddress Address;
+
     ui.setupUi(this);
     Statusbar = statusBar();
 
     // initializing the connection manager Client with the IP and address from
     // the ui, listens to the same port
-    UdpClient = new Client(QHostAddress().setAddress(ui.lineEdit_IP->text()),
-                           ui.lineEdit_Port->text().toInt());
+    Address.setAddress(ui.lineEdit_IP->text());
+    UdpClient = new Client(Address, ui.lineEdit_Port->text().toInt());
 
     // to get informed when data arrives
     connect(UdpClient, SIGNAL(readDatagram(QByteArray , QHostAddress)),
@@ -54,8 +56,8 @@ void udpuncher::on_pushButton_Connect_clicked(bool checked)
         ui.lineEdit_Port->setFocus();
     } else {
         //TODO: It should send more in constant intervalls
-        ui.textEdit_Output->append(tr("Connecting to %1...")
-                                   .arg(UdpClient->IP.toString()));
+        //ui.textEdit_Output->append(tr("Connecting to %1...")
+        //                           .arg(UdpClient->IP.toString()));
         ui.textEdit_Output->append(tr("Sending a message..."));
         UdpClient->sendMessage(tr("Hello World from %1")
                                .arg(QHostAddress::LocalHost));
