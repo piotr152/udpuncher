@@ -1,5 +1,6 @@
 *~
 *.o
+*.tar.xz
 udpuncher
 Makefile
 Makefile

@@ -23,6 +23,7 @@
 
 
 #include "udpuncher.h"
+#include <qscrollbar.h>
 
 udpuncher::udpuncher(QWidget *parent)
     : QMainWindow(parent)
@@ -126,4 +127,6 @@ void udpuncher::slot_Client_readDatagram(QByteArray datagram, QHostAddress sende
                                .arg(sender.toString())
                                .arg(QTime().currentTime().toString())
                                .arg(datagram.data()));
+    ui.textEdit_Output->verticalScrollBar()->setValue(
+                ui.textEdit_Output->verticalScrollBar()->maximum());
 }
